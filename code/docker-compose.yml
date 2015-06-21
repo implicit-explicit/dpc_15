@@ -1,0 +1,29 @@
+web:
+  build: images/nginx
+  ports:
+    - "8888:80"
+  volumes:
+    - ./app/phpconf:/var/www/html
+    - ./app/nginx/conf.d:/etc/nginx/conf.d
+    - ./app/nginx/sites-enabled:/etc/nginx/sites-enabled
+  links:
+    - php
+
+
+php:
+  build: images/php-fpm
+  volumes:
+    - ./app/phpconf:/var/www/html
+  links:
+    - mysql
+
+
+mysql:
+  image: mysql:5.7
+  volumes:
+   - ./data/mysql:/var/lib/mysql
+  environment:
+   - MYSQL_ROOT_PASSWORD=phpconf
+   - MYSQL_DATABASE=phpconf
+   - MYSQL_USER=phpconf
+   - MYSQL_PASSWORD=phpconf
