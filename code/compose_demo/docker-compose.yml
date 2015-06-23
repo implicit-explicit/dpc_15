@@ -5,7 +5,6 @@ web:
   volumes:
     - ./app/phpconf:/var/www/html
     - ./app/nginx/conf.d:/etc/nginx/conf.d
-    - ./app/nginx/sites-enabled:/etc/nginx/sites-enabled
   links:
     - php
 
@@ -20,8 +19,8 @@ php:
 
 mysql:
   image: mysql:5.7
-  volumes:
-   - ./data/mysql:/var/lib/mysql
+#  volumes:
+#   - ./data/mysql:/var/lib/mysql
   environment:
    - MYSQL_ROOT_PASSWORD=phpconf
    - MYSQL_DATABASE=phpconf
