@@ -19,8 +19,8 @@ php:
 
 mysql:
   image: mysql:5.7
-#  volumes:
-#   - ./data/mysql:/var/lib/mysql
+  volumes:
+   - /var/lib/mysql:/var/lib/mysql
   environment:
    - MYSQL_ROOT_PASSWORD=phpconf
    - MYSQL_DATABASE=phpconf
